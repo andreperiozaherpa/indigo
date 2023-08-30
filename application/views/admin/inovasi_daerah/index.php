@@ -37,10 +37,10 @@
 					</div>
 					<?php
 					$date = date('Y-m-d');
-					if ($date > $status_form->tanggal_mulai && $date < $status_form->tanggal_tutup) { ?>
+					// if ($date > $status_form->tanggal_mulai && $date < $status_form->tanggal_tutup) { ?>
 						<span>* Formulir penginputan akan ditutup <b id="demo"></b> lagi</span>
 						<br><br>
-					<?php } ?>
+					<!-- <?php } ?> -->
 					<div class="white-box">
 						<ul class="nav customtab nav-tabs" role="tablist">
 							<li role="presentation" class="active"><a href="#home1" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true"><span class="visible-xs"><i class="ti-home"></i></span><span class="hidden-xs"> Semua</span></a></li>
