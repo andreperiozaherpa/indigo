@@ -22,7 +22,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 //$config['base_url'] = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] && ! in_array(strtolower($_SERVER['HTTPS']), array( 'off', 'no' ))) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
 #$config['base_url'] = "https://e-office.sumedangkab.go.id/";
 // $config['base_url']    = 'https://'.$_SERVER['HTTP_HOST'].'/';
-$config['base_url']    = 'https://' . $_SERVER['HTTP_HOST'] . '/';
 
 
 /*
