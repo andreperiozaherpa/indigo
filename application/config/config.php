@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /* a
 |--------------------------------------------------------------------------
@@ -21,7 +21,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //$serverport = filter_input(INPUT_SERVER, 'SERVER_PORT');
 //$config['base_url'] = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] && ! in_array(strtolower($_SERVER['HTTPS']), array( 'off', 'no' ))) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
 #$config['base_url'] = "https://e-office.sumedangkab.go.id/";
-$config['base_url']    = 'https://'.$_SERVER['HTTP_HOST'].'/';
+// $config['base_url']    = 'https://'.$_SERVER['HTTP_HOST'].'/';
+$config['base_url']    = 'https://' . $_SERVER['HTTP_HOST'] . '/';
 
 
 /*
@@ -51,7 +52,7 @@ $config['index_page'] = '';
 |
 | WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 */
-$config['uri_protocol']	= 'REQUEST_URI';
+$config['uri_protocol']  = 'REQUEST_URI';
 
 /*
 |--------------------------------------------------------------------------
@@ -76,7 +77,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'english';
+$config['language']  = 'english';
 
 /*
 |--------------------------------------------------------------------------
@@ -384,11 +385,11 @@ $config['sess_regenerate_destroy'] = FALSE;
 |       'cookie_httponly') will also affect sessions.
 |
 */
-$config['cookie_prefix']	= '';
-$config['cookie_domain']	= '';
-$config['cookie_path']		= '/';
-$config['cookie_secure']	= FALSE;
-$config['cookie_httponly'] 	= FALSE;
+$config['cookie_prefix']  = '';
+$config['cookie_domain']  = '';
+$config['cookie_path']    = '/';
+$config['cookie_secure']  = FALSE;
+$config['cookie_httponly']   = FALSE;
 
 /*
 |--------------------------------------------------------------------------
@@ -436,10 +437,10 @@ $config['csrf_protection'] = FALSE;
 
 // ENABLE CSRF ONLY FOR SIMPEG
 if (isset($_SERVER["REQUEST_URI"])) {
-    if(stripos($_SERVER["REQUEST_URI"],'/simpeg') !== FALSE) {
-        $config['csrf_protection'] = TRUE;
-    }
-} 
+  if (stripos($_SERVER["REQUEST_URI"], '/simpeg') !== FALSE) {
+    $config['csrf_protection'] = TRUE;
+  }
+}
 
 $config['csrf_token_name'] = 'csrf_test_name';
 $config['csrf_cookie_name'] = 'csrf_cookie_name';
@@ -512,7 +513,7 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
-$config['authorization'] = '34N67QLVvds7Mp8caS8wvWujqP4zYY6f' ;// 'base64:81PdUgT7dNTLG3MBVUwSOtK96vDTc0ybyvRkS0FmUu0=';
+$config['authorization'] = '34N67QLVvds7Mp8caS8wvWujqP4zYY6f'; // 'base64:81PdUgT7dNTLG3MBVUwSOtK96vDTc0ybyvRkS0FmUu0=';
 $config['app_token'] = 'TO5ijUKyyCCdmGpwu36FjyDnCENvq3K4';
 $config['url_desa'] = 'https://e-officedesa.sumedangkab.go.id/';
 
@@ -524,22 +525,22 @@ $config['jenis_kompetensi'] = array(
   'Fungsional',
   'Pemerintahan',
 );
-$config['eselon'] = array("Eselon II","Eselon III","Eseleon IV","Pelaksana");
+$config['eselon'] = array("Eselon II", "Eselon III", "Eseleon IV", "Pelaksana");
 $config['nilai_kesenjangan'] = array(
   'Tidak ada kesenjangan',
   'Rendah',
   'Sedang',
   'Tinggi',
 );
-$config['kategori_diklat'] = array('Pendidikan','Pelatihan');
-$config['kategori_diklat_pelatihan'] = array('Klasikal','Non-Klasikal');
+$config['kategori_diklat'] = array('Pendidikan', 'Pelatihan');
+$config['kategori_diklat_pelatihan'] = array('Klasikal', 'Non-Klasikal');
 $config['model_penyelenggara_diklat'] = array(
   'Mandiri',
   'Bersama Instansi Pemerintah lain',
   'Bersama Lembaga Independen',
 );
-$config['dpa_diklat'] = array('DPA BPSDM','DPA Perangkat Daerah');
-$config['kesesuaian_diklat'] = array('Sesuai','Tidak Sesuai');
+$config['dpa_diklat'] = array('DPA BPSDM', 'DPA Perangkat Daerah');
+$config['kesesuaian_diklat'] = array('Sesuai', 'Tidak Sesuai');
 
 $config['status_penilaian_mandiri'] = array(
   1 => 'Teridentifikasi',
