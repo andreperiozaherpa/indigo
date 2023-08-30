@@ -42,12 +42,16 @@ class Pengajuan_surat_model extends CI_Model
   public function get_page($mulai, $hal, $start, $end, $jenis, $id_pegawai)
   {
 
+    // terhubung dgn data bkd
+    // $this->db->select('pengajuan_surat.*, ref_jenis_pengajuan_surat.id_ref_jenis_pengajuan_surat, ref_jenis_pengajuan_surat.jenis_pengajuan_surat, pegawai.id_pegawai, pegawai.nip, pegawai.golongan, pegawai.pangkat, pegawai.jabatan, pegawai.nama_lengkap,pegawai.id_unit_kerja, pegawai.id_skpd,
+    //                   ref_unit_kerja.id_unit_kerja, ref_unit_kerja.nama_unit_kerja, ref_skpd.id_skpd, ref_skpd.nama_skpd, data_bkd.nip, data_bkd.temlahir, data_bkd.tgllahir');
     $this->db->select('pengajuan_surat.*, ref_jenis_pengajuan_surat.id_ref_jenis_pengajuan_surat, ref_jenis_pengajuan_surat.jenis_pengajuan_surat, pegawai.id_pegawai, pegawai.nip, pegawai.golongan, pegawai.pangkat, pegawai.jabatan, pegawai.nama_lengkap,pegawai.id_unit_kerja, pegawai.id_skpd,
-                      ref_unit_kerja.id_unit_kerja, ref_unit_kerja.nama_unit_kerja, ref_skpd.id_skpd, ref_skpd.nama_skpd, data_bkd.nip, data_bkd.temlahir, data_bkd.tgllahir');
+                      ref_unit_kerja.id_unit_kerja, ref_unit_kerja.nama_unit_kerja, ref_skpd.id_skpd, ref_skpd.nama_skpd');
+
     $this->db->join('pegawai', 'pegawai.id_pegawai=pengajuan_surat.id_pegawai');
     $this->db->join('ref_unit_kerja', 'ref_unit_kerja.id_unit_kerja = pegawai.id_unit_kerja');
     $this->db->join('ref_skpd', 'ref_skpd.id_skpd = pegawai.id_skpd');
-    $this->db->join('data_bkd', 'data_bkd.nip=pegawai.nip');
+    // $this->db->join('data_bkd', 'data_bkd.nip=pegawai.nip');
 
     if ($start != '') {
       $this->db->where('pengajuan_surat.created_at >=', $start);
