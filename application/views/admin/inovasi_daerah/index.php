@@ -37,10 +37,10 @@
 					</div>
 					<?php
 					$date = date('Y-m-d');
-					// if ($date > $status_form->tanggal_mulai && $date < $status_form->tanggal_tutup) { ?>
+					if ($date > $status_form->tanggal_mulai && $date < $status_form->tanggal_tutup) { ?>
 						<span>* Formulir penginputan akan ditutup <b id="demo"></b> lagi</span>
 						<br><br>
-					<!-- <?php } ?> -->
+					<?php } ?>
 					<div class="white-box">
 						<ul class="nav customtab nav-tabs" role="tablist">
 							<li role="presentation" class="active"><a href="#home1" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true"><span class="visible-xs"><i class="ti-home"></i></span><span class="hidden-xs"> Semua</span></a></li>
@@ -59,14 +59,14 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="col-md-6">
-											<?php if (in_array('admin_indeks_inovasi', $user_privileges) || in_array('indeks_inovasi', $user_privileges) || $user_level == 'Administrator') {
-												$date = date('Y-m-d');
-												if ($this->session->userdata('id_skpd') == 16 || ($date > $status_form->tanggal_mulai && $date < $status_form->tanggal_tutup)) { ?>
-													<a href="<?= base_url('inovasi_daerah/add') ?>" class="btn btn-info"><i class="fa fa-plus-circle"></i> Tambah Inovasi</a>
-												<?php
-												}
-												?>
-											<?php } ?>
+											<!-- <?php if (in_array('admin_indeks_inovasi', $user_privileges) || in_array('indeks_inovasi', $user_privileges) || $user_level == 'Administrator') {
+														$date = date('Y-m-d');
+														if ($this->session->userdata('id_skpd') == 16 || ($date > $status_form->tanggal_mulai && $date < $status_form->tanggal_tutup)) { ?> -->
+											<a href="<?= base_url('inovasi_daerah/add') ?>" class="btn btn-info"><i class="fa fa-plus-circle"></i> Tambah Inovasi</a>
+											<!-- <?php
+														}
+													?>
+											<?php } ?> -->
 										</div>
 										<div class="col-md-6 text-right">
 											<?php if (in_array('admin_indeks_inovasi', $user_privileges) || $user_level == 'Administrator') { ?>
