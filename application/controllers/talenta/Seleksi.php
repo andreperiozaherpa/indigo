@@ -360,4 +360,3 @@ class Seleksi extends CI_Controller {
 	}
 	
 }
-?>
