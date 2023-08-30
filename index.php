@@ -56,7 +56,7 @@ date_default_timezone_set("Asia/Jakarta");
  * NOTE: If you change these, also change the error_reporting() code below
  */
 // define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
-$default_env = 'production';
+$default_env = 'development';
 
 // if first path is naskah
 if (isset($_SERVER['PATH_INFO']) && strpos($_SERVER['PATH_INFO'], '/naskah') === 0) {
