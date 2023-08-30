@@ -1,0 +1,18 @@
+{
+	"description" : "The CodeIgniter framework",
+	"name" : "codeigniter/framework",
+	"license": "MIT",
+	"require": {
+		"php": ">=5.2.4",
+		"wisembly/elephant.io": "^3.3",
+		"phpoffice/phpspreadsheet": "^1.8",
+		"mikehaertl/phpwkhtmltopdf": "^2.4",
+		"dompdf/dompdf": "^0.8.3",
+		"ncjoes/office-converter": "^1.0",
+		"ilovepdf/ilovepdf-php": "^1.1",
+		"league/oauth2-client": "^2.6"
+	},
+	"require-dev": {
+		"mikey179/vfsStream": "1.1.*"
+	}
+}

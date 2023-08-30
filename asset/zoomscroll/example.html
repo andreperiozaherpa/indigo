@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0" />
+		<meta name="author" content="Armin Pfäffle" />
+		<meta name="robots" content="index, follow" />
+
+		<title>ap-image-zoom</title>
+		<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="lib/css/ap-image-zoom.css" type="text/css" media="screen" />
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<!-- <script src="vendor/jquery.mousewheel/jquery.mousewheel.min.js"></script> -->
+		<!-- <script src="vendor/hammer.js/hammer.min.js"></script> -->
+
+		<!-- <script src="vendor/touchemulator/touch-emulator.js"></script> -->
+		<!-- <script> TouchEmulator({ theme: 'dark' }); </script> -->
+		 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.11/jquery.mousewheel.min.js"></script>
+		
+		<script src="lib/js/ap-image-zoom.js"></script>
+
+
+		<!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	</head>
+
+	<body>
+		<div style="text-align: center; width: 90%; padding: 10px 0; margin: 0 auto;">
+			<input type="button" value="Init" id="init" />
+			<input type="button" value="Destroy" id="destroy" />
+
+			<input type="button" value="Zoom to 0.7" id="zoom-to" />
+			<input type="button" value="Zoom +" id="zoom-in" />
+			<input type="button" value="Zoom -" id="zoom-out" />
+			<input type="button" value="Reset" id="reset" />
+			<input type="button" value="Disable" id="disable" />
+			<input type="button" value="Enable" id="enable" />
+			<input type="button" value="Enable AutoCenter" id="autoCenter" />
+		</div>
+
+		<img src="images/pride-w'14-3_large.jpg" width="1950" height="2550" alt="dirndl" id="image" style="display: none" />
+
+
+		<script type="text/javascript">
+
+			function initImage() {
+				$('#image').apImageZoom({
+					  cssWrapperClass: 'custom-wrapper-class'
+					// , autoCenter: false
+					// , loadingAnimation: 'throbber'
+					, minZoom: 'contain'
+					// , maxZoom: false
+					// , maxZoom: 1.0
+					// , hammerPluginEnabled: false
+					//, hardwareAcceleration: false
+				});
+			};
+			$(document).ready(function() {
+				initImage();
+			});
+
+
+			$('#init').click(function() {
+				initImage();
+			});
+
+		</script>
+
+	</body>
+</html>
