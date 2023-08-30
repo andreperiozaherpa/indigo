@@ -4,9 +4,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Admin extends CI_Controller
 {
 	public $user_id;
-
 	public function __construct()
 	{
+		die;
 		parent::__construct();
 		$this->user_id = $this->session->userdata('user_id');
 		$this->load->model('user_model');
@@ -512,7 +512,7 @@ class Admin extends CI_Controller
 
 	public function logout()
 	{
-		$CI = & get_instance();
+		$CI = &get_instance();
 		$CI->session->sess_destroy();
 		redirect('admin/login');
 	}
@@ -557,44 +557,43 @@ class Admin extends CI_Controller
 			$this->output->set_content_type('application/json')->set_output(json_encode($data));
 		}
 	}
-    public function tes_token_maksiti($token)
-    {
-        $data['title']		    = 'Detail SKP | ' . $this->Config->app_name;
+	public function tes_token_maksiti($token)
+	{
+		$data['title']		    = 'Detail SKP | ' . $this->Config->app_name;
 		$data['content']	    = "kinerja/skp/verifikasi/detail/index";
 		$data['user_picture']   = $this->user_picture;
 		$data['full_name']		= $this->full_name;
 		$data['user_level']		= $this->user_level;
-        $data['plugins']        = ['select','sweetalert'];
-        $data['active_menu']    = "verifikasi_skp";
+		$data['plugins']        = ['select', 'sweetalert'];
+		$data['active_menu']    = "verifikasi_skp";
 
-        
-        $this->load->model("kinerja/Config");
-        $this->load->model("kinerja/Skp_model");
-        $this->load->model("sicerdas/Globalvar");
-        
 
-        $param['where']["md5(CONCAT('SKP',skp.id_skp))"] = $token;
+		$this->load->model("kinerja/Config");
+		$this->load->model("kinerja/Skp_model");
+		$this->load->model("sicerdas/Globalvar");
 
-        $detail = $this->Skp_model->get($param)->row();
 
-        if(!$detail || !$token)
-        {
-            show_404();
-        }
+		$param['where']["md5(CONCAT('SKP',skp.id_skp))"] = $token;
 
-        if($detail->status!="Belum Diverifikasi")
-        {
-            $token = md5("SKP".$detail->id_skp);
-            redirect("kinerja/skp/detail/view?token=".$token);
-        }
-		echo $detail->id_skp; die;
+		$detail = $this->Skp_model->get($param)->row();
 
-        $data['detail'] = $detail;
+		if (!$detail || !$token) {
+			show_404();
+		}
 
-        $role_pimpinan = ($detail->kepala_skpd == "Y" && in_array($detail->jenis_skpd,['skpd','kecamatan']));
+		if ($detail->status != "Belum Diverifikasi") {
+			$token = md5("SKP" . $detail->id_skp);
+			redirect("kinerja/skp/detail/view?token=" . $token);
+		}
+		echo $detail->id_skp;
+		die;
 
-        $data['role_pimpinan']  = $role_pimpinan;
+		$data['detail'] = $detail;
 
-        $this->load->view('admin/main', $data);
-    }
+		$role_pimpinan = ($detail->kepala_skpd == "Y" && in_array($detail->jenis_skpd, ['skpd', 'kecamatan']));
+
+		$data['role_pimpinan']  = $role_pimpinan;
+
+		$this->load->view('admin/main', $data);
+	}
 }
