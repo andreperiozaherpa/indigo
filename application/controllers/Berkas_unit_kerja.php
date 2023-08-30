@@ -169,14 +169,14 @@ class Berkas_unit_kerja extends CI_Controller
 			$data['active_menu'] = "berkas_unit_kerja";
 
 			$id = $this->uri->segment(3);
-			var_dump($id);
-			die;
+
 			if (empty($id)) {
 				redirect(base_url('berkas_unit_kerja'));
 			}
 
 			$data['item'] = $this->berkas_unit_kerja_model->select_by_id_unit_kerja($id);
-
+			var_dump($data['item']);
+			die;
 			if (empty($data['item'])) {
 				redirect(base_url('berkas_unit_kerja'));
 			}
