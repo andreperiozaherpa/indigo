@@ -266,4 +266,3 @@ public function delete_berkas($id,$col)
 	}
 }
 }
-?>
