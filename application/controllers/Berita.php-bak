@@ -1,0 +1,181 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Berita extends CI_Controller {
+	public $user_id;
+
+	public function __construct(){
+		parent ::__construct();	
+		$this->user_id = $this->session->userdata('user_id');
+		$this->user_level = $this->session->userdata('user_level');
+		$this->load->model('visitor_model');
+		$this->visitor_model->cek_visitor();
+
+		$this->load->model('company_profile_model');
+
+		$this->company_profile_model->set_identity();
+
+		//banner
+		$this->load->model('banner_model');
+		$data['banner'] = $this->banner_model->get_all();
+	}
+
+	public function index()
+	{
+		$data['title'] = "Berita - ".$this->company_profile_model->nama;
+		$data['active_menu'] = "blog";
+		$this->load->model('post_model');
+		if (!empty($_GET['s'])) {
+			$this->post_model->search = $_GET['s'];
+			$data['search'] = $_GET['s'];
+		}
+
+
+		if (!empty($_GET['ch'])) {
+			$this->post_model->channel_id = $_GET['ch'];
+			$data['ch'] = $_GET['ch'];
+		} else {
+			$data['ch'] = 0;
+		}
+
+		$this->post_model->post_status = "Publish";
+		$data['per_page']	= 5;
+		$offset = 0;
+		if (!empty($_GET['per_page'])) $offset = $_GET['per_page'] ;
+		$this->post_model->external = 'true';
+		$data['posts']		= $this->post_model->get_for_page($data['per_page'],$offset);
+		$data['total_rows']	= $this->post_model->get_total_row();
+		$this->load->model('category_model');
+		$this->category_model->category_status = "Active";
+		$data['categories']	= $this->category_model->get_all();
+		$data['popular']	= $this->post_model->get_popular();
+
+		//download
+		$this->load->model('banner_model');
+		$data['banner'] = $this->banner_model->get_all();
+
+		
+		$this->load->view('blog/src/header',$data);
+		$this->load->view('blog/src/top_nav',$data);
+		$this->load->view('blog/blog',$data);
+		$this->load->view('blog/src/footer',$data);
+	}
+	public function read($title_slug)
+	{
+		if (!empty($title_slug)) {
+			$data['active_menu'] = "Berita";
+			$this->load->model('post_model');
+			$this->post_model->title_slug = $title_slug;
+			$this->post_model->set_by_slug();
+			$data['title']	= $this->post_model->title." - ".$this->company_profile_model->nama;
+			$data['title_slug']	= $this->post_model->title_slug;
+			$data['category_name']	= $this->post_model->category_name;
+			$data['category_slug']	= $this->post_model->category_slug;
+			$data['date']	= $this->post_model->date;
+			$data['time']	= $this->post_model->time;
+			$data['picture']	= $this->post_model->picture;
+			$data['full_name']	= $this->post_model->full_name;
+			$data['content']	= $this->post_model->content;
+			$this->load->model('category_model');
+			$this->category_model->category_status = "Active";
+			$data['categories']	= $this->category_model->get_all();
+			$data['popular']	= $this->post_model->get_popular();
+			
+			$data['random_cat']	= $this->post_model->get_random_cat();
+			$this->post_model->update_hits();
+
+			//banner
+			$this->load->model('banner_model');
+			$data['banner'] = $this->banner_model->get_all();
+
+
+			$this->load->view('blog/src/header',$data);
+			$this->load->view('blog/src/top_nav',$data);
+			$this->load->view('blog/read',$data);
+			$this->load->view('blog/src/footer',$data);
+		} else {
+			redirect(base_url('berita'));
+		}
+	}
+	public function category($category_slug)
+	{
+		if (!empty($category_slug)) {
+			$data['active_menu'] = "Berita";
+			$this->load->model('post_model');
+			$this->post_model->category_slug = $category_slug;
+			$this->post_model->post_status = "Publish";
+			$data['per_page']	= 10;
+			$data['total_rows']	= $this->post_model->get_total_row();
+			$offset = 0;
+			if (!empty($_GET['per_page'])) $offset = $_GET['per_page'] ;
+			$data['posts']		= $this->post_model->get_for_page($data['per_page'],$offset);
+			$this->load->model('category_model');
+			$this->category_model->category_status = "Active";
+			$data['categories']	= $this->category_model->get_all();			$data['popular']	= $this->post_model->get_popular();
+			$this->category_model->category_slug = $category_slug;
+			$this->category_model->set_by_slug();
+			$data['category_name']	= $this->category_model->category_name;
+			$data['title'] = $data['category_name']. " - " .$this->company_profile_model->nama;
+
+			//banner
+			$this->load->model('banner_model');
+			$data['banner'] = $this->banner_model->get_all();
+
+			$this->load->view('blog/src/header',$data);
+			$this->load->view('blog/src/top_nav',$data);
+			$this->load->view('blog/category',$data);
+			$this->load->view('blog/src/footer',$data);
+		} else {
+			redirect(base_url('berita'));
+		}
+	}
+	public function tag($tag_slug)
+	{
+		if (!empty($tag_slug)) {
+			$data['active_menu'] = "Berita";
+			$this->load->model('post_model');
+			$this->load->model('tag_model');
+			$this->tag_model->tag_slug = $tag_slug;
+			$this->tag_model->set_by_slug();
+			$data['tag_name']	= $this->tag_model->tag_name;
+			$this->post_model->tag = $this->tag_model->tag_name;
+			$this->post_model->post_status = "Publish";
+			$data['per_page']	= 10;
+			$data['total_rows']	= $this->post_model->get_total_row();
+			$offset = 0;
+			if (!empty($_GET['per_page'])) $offset = $_GET['per_page'] ;
+			$data['posts']		= $this->post_model->get_for_page($data['per_page'],$offset);
+			
+			$data['Qtag']	= $this->tag_model->get_all();
+			$this->load->model('category_model');
+			$this->category_model->category_status = "Active";
+			$data['categories']	= $this->category_model->get_all();
+			$data['tags_']	= $this->tag_model->get_all();
+			$data['popular']	= $this->post_model->get_popular();
+			$data['title'] = $data['tag_name']. " - " .$this->company_profile_model->nama;
+
+			//banner
+			$this->load->model('banner_model');
+			$data['banner'] = $this->banner_model->get_all();
+
+			$this->load->view('blog/src/header',$data);
+			$this->load->view('blog/src/top_nav',$data);
+			$this->load->view('blog/tag',$data);
+			$this->load->view('blog/src/footer',$data);
+		} else {
+			redirect(base_url('berita'));
+		}
+	}
+	public function about()
+	{
+		
+		$this->load->model('post_model');
+		$this->load->model('category_model');
+		$this->category_model->category_status = "Active";
+		$data['categories']	= $this->category_model->get_all();
+		$data['popular']	= $this->post_model->get_popular();
+		$this->load->view('blog/about',$data);
+	}
+	
+}
+?>
