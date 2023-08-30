@@ -61,6 +61,9 @@ class Pengajuan_surat extends CI_Controller
 
 			$data['list'] = $this->psm->get_page($mulai, $hal, $start, $end, $jenis, $id_pegawai);
 
+			// var_dump($this->db->last_query());
+			// die;
+
 			$data['pengajuan_surat'] = $this->psm->get_all($id_pegawai);
 			$this->load->view('admin/index', $data);
 		} else {
