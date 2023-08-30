@@ -59,14 +59,17 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="col-md-6">
-											<!-- <?php if (in_array('admin_indeks_inovasi', $user_privileges) || in_array('indeks_inovasi', $user_privileges) || $user_level == 'Administrator') {
-														$date = date('Y-m-d');
-														if ($this->session->userdata('id_skpd') == 16 || ($date > $status_form->tanggal_mulai && $date < $status_form->tanggal_tutup)) { ?> -->
+											<?php
+											// if (in_array('admin_indeks_inovasi', $user_privileges) || in_array('indeks_inovasi', $user_privileges) || $user_level == 'Administrator') {
+											//	$date = date('Y-m-d');
+											//	if ($this->session->userdata('id_skpd') == 16 || ($date > $status_form->tanggal_mulai && $date < $status_form->tanggal_tutup)) {
+											?>
 											<a href="<?= base_url('inovasi_daerah/add') ?>" class="btn btn-info"><i class="fa fa-plus-circle"></i> Tambah Inovasi</a>
-											<!-- <?php
-														}
-													?>
-											<?php } ?> -->
+											<?php
+											//}
+											?>
+											<?php //} 
+											?>
 										</div>
 										<div class="col-md-6 text-right">
 											<?php if (in_array('admin_indeks_inovasi', $user_privileges) || $user_level == 'Administrator') { ?>
