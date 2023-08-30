@@ -228,4 +228,3 @@ class Verifikasi_pengajuan_surat extends CI_Controller {
 
 
 }
-?>
