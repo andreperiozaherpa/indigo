@@ -16,7 +16,7 @@
     "gulp-cli": "^2.2.0",
     "gulp-w3c-html-validator": "^1.4.4",
     "node-notifier": "^5.4.3",
-    "through2": "^3.0.1"
+    "through2": "^3.0.2"
   },
   "devDependencies": {
     "gulp": "^4.0.2",
