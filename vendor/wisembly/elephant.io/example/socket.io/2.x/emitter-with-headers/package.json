@@ -6,7 +6,7 @@
         "start": "supervisor --debug server.js"
     },
     "dependencies": {
-        "socket.io": "~2",
+        "socket.io": "~4.8.0",
         "winston": "*"
     }
 }
